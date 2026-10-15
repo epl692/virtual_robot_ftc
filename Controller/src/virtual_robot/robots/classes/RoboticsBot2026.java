@@ -53,9 +53,9 @@ public class RoboticsBot2026 extends MecanumPhysicsBase {
         // Pivots are the centers of each shape, in the 75x75 FXML coordinate space
         pickupRoller.getTransforms().add(new Rotate(0, 37.5, 17));
         shooterWheel.getTransforms().add(new Rotate(0, 37.5, 55));
-        indexBar1.getTransforms().add(new Rotate(0, 20, 69.5));
-        indexBar2.getTransforms().add(new Rotate(0, 37.5, 69.5));
-        indexBar3.getTransforms().add(new Rotate(0, 55, 69.5));
+        indexBar1.getTransforms().add(new Rotate(0, 15, 0.5));
+        indexBar2.getTransforms().add(new Rotate(0, 60.5, 0.5));
+        indexBar3.getTransforms().add(new Rotate(0, 55, 29.5));
     }
 
     protected void createHardwareMap(){
