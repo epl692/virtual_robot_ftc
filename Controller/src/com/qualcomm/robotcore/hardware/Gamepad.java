@@ -82,6 +82,10 @@ public class Gamepad {
     public volatile boolean right_stick_button = false;
     public volatile float left_trigger = 0;
     public volatile float right_trigger = 0;
+    /** True when the trigger is pressed past the threshold (approximates the real SDK). */
+    public volatile boolean left_trigger_pressed = false;
+    public volatile boolean right_trigger_pressed = false;
+    private static final float TRIGGER_PRESSED_THRESHOLD = 0.5f;
 
     public static int x_bit = 1;
     public static int y_bit = 1 << 1;
@@ -149,6 +153,8 @@ public class Gamepad {
         right_stick_button = false;
         left_trigger = 0;
         right_trigger = 0;
+        left_trigger_pressed = left_trigger > TRIGGER_PRESSED_THRESHOLD;
+        right_trigger_pressed = right_trigger > TRIGGER_PRESSED_THRESHOLD;
     }
 
     public void update(ControllerState state){
@@ -173,6 +179,8 @@ public class Gamepad {
         right_stick_button = state.rightStickClick;
         left_trigger = setWithDeadzone(state.leftTrigger);
         right_trigger = setWithDeadzone(state.rightTrigger);
+        left_trigger_pressed = left_trigger > TRIGGER_PRESSED_THRESHOLD;
+        right_trigger_pressed = right_trigger > TRIGGER_PRESSED_THRESHOLD;
         updateButtonAliases();
     }
 
@@ -198,6 +206,8 @@ public class Gamepad {
         right_stick_button = false;
         left_trigger = state.left_trigger;
         right_trigger = state.right_trigger;
+        left_trigger_pressed = left_trigger > TRIGGER_PRESSED_THRESHOLD;
+        right_trigger_pressed = right_trigger > TRIGGER_PRESSED_THRESHOLD;
         updateButtonAliases();
     }
 
