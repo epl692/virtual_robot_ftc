@@ -24,12 +24,12 @@ public class RoboticsBot2026 extends MecanumPhysicsBase {
     private static final String[] TEAM_DRIVE_NAMES =
             {"back_left_drive", "front_left_drive", "front_right_drive", "back_right_drive"};
 
-    private static final String[] INDEX_SERVO_NAMES = {"index_servo_1", "index_servo_2", "index_servo_3"};
+    private static final String[] INDEX_SERVO_NAMES = {"index_servo_1", "index_servo_2", "index_servo_3", "windmill_servo"};
     private static final double INDEX_SERVO_DEGREES_PER_SECOND = 720;
 
     private DcMotorExImpl pickupMotor = null;
     private DcMotorExImpl shooterMotor = null;
-    private CRServoImpl[] indexServos = new CRServoImpl[3];
+    private CRServoImpl[] indexServos = new CRServoImpl[INDEX_SERVO_NAMES.length];
 
     // These are instantiated during loading via fx:id properties.
     @FXML Rectangle pickupRoller;
@@ -47,7 +47,7 @@ public class RoboticsBot2026 extends MecanumPhysicsBase {
         hardwareMap.setActive(true);
         pickupMotor = (DcMotorExImpl)hardwareMap.get(DcMotorEx.class, "pickup_motor");
         shooterMotor = (DcMotorExImpl)hardwareMap.get(DcMotorEx.class, "shooter_motor");
-        for (int i=0; i<3; i++) indexServos[i] = (CRServoImpl)hardwareMap.crservo.get(INDEX_SERVO_NAMES[i]);
+        for (int i=0; i<indexServos.length; i++) indexServos[i] = (CRServoImpl)hardwareMap.crservo.get(INDEX_SERVO_NAMES[i]);
         hardwareMap.setActive(false);
 
         // Pivots are the centers of each shape, in the 75x75 FXML coordinate space
